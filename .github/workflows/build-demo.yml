@@ -124,7 +124,7 @@ jobs:
       - name: Run Docker container
         run: |
           docker run -d -p 5000:5000 --name oc-helm-gp4 harbor.kakor.ovh/public/oc-helm:1.0
-          docker exec -ti /bin/bash oc-helm-gp4
+          docker exec -ti oc-helm-gp4 /bin/bash
           oc login --token=sha256~PjEzP_iqaBRuaKXLtKGUJBTLN0GpnzV5mEUparnJ_nM --server=https://api.openshift.kakor.ovh:6443
           helm upgrade --install groupe-4 librairie-helm/ --set image=harbor.kakor.ovh/ipi/groupe-4:${{ github.ref_name }}
       # - name: Connexion à Openshift
