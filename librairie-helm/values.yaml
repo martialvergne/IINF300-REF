@@ -1,4 +1,4 @@
 Url: groupe-4.apps.openshift.kakor.ovh
 
 python:
-  image: python:latest
+  image: harbor.kakor.ovh/ipi/groupe-4
