@@ -49,6 +49,6 @@ jobs:
         with:
           source: "./docker/app/"
           mypy-options: "--ignore-missing-imports --show-error-codes"
-          pylint-options: "--rcfile=./docker/setup.cfg"
+          pylint-options: "--rcfile=./docker/setup.cfg --recursive"
           isort-options: "-w 100"
-          django: true
+          django: false
