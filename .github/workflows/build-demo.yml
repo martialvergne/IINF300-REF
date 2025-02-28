@@ -81,14 +81,18 @@ jobs:
         with:
           images: harbor.kakor.ovh/ipi/groupe-4
           tags: type=sha
-      - uses: addnab/docker-run-action@v3
-        with:
-          username: ipi
-          password: ${{ secrets.password_harbor }}
-          registry: harbor.kakor.ovh
-          image: ${{ steps.meta.outputs.tags }}
-          run: |
-            sleep 10 && curl --header "Content-Type: application/json" http://localhost:5000/test
+      # - uses: addnab/docker-run-action@v3
+      #   with:
+      #     username: ipi
+      #     password: ${{ secrets.password_harbor }}
+      #     registry: harbor.kakor.ovh
+      #     image: ${{ steps.meta.outputs.tags }}
+      #     run: |
+      #       sleep 10 && curl --header "Content-Type: application/json" http://localhost:5000/test
 
 
+      - name: Run Docker container
+        run: docker run -d -p 5000:5000 --name ${{ steps.meta.outputs.tags }} groupe4
+      - name: test nginx
+        run: sleep 10 && curl http://127.0.0.1:5000/test
 
