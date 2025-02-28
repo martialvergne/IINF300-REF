@@ -1,1 +1,4 @@
-Url: groupe-x.apps.openshift.kakor.ovh
+Url: groupe-4.apps.openshift.kakor.ovh
+
+python:
+  image: python:latest

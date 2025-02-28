@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: ['main']
+    tags: ['flask*']
 
 jobs:
   linter:
@@ -81,21 +81,33 @@ jobs:
         with:
           images: harbor.kakor.ovh/ipi/groupe-4
           tags: type=sha
-      - uses: addnab/docker-run-action@v3
-        with:
-          username: ipi
-          password: ${{ secrets.password_harbor }}
-          registry: harbor.kakor.ovh
-          image: ${{ steps.meta.outputs.tags }}
+      # - uses: addnab/docker-run-action@v3
+      #   with:
+      #     username: ipi
+      #     password: ${{ secrets.password_harbor }}
+      #     registry: harbor.kakor.ovh
+      #     image: ${{ steps.meta.outputs.tags }}
 
-      - name: Test api
-        run: |
-          sleep 10 && curl --header "Content-Type: application/json" http://localhost:5000/test
-
-      # - name: Run Docker container
-      #   run: docker run -d -p 5000:5000 --name groupe4 ${{ steps.meta.outputs.tags }}
-      # - name: Test Api
+      # - name: Test api
       #   run: |
-      #     sleep 10
-      #     curl http://127.0.0.1:5000/test
-      #     curl --header "Content-Type: application/json" http://localhost:5000/librairie/livres -d '{"titre": "DevSecOps DEAVSETS", "auteur": "Jordan Assouline"}'
+      #     sleep 10 && curl --header "Content-Type: application/json" http://localhost:5000/test
+
+      - name: Run Docker container
+        run: docker run -d -p 5000:5000 --name groupe4 ${{ steps.meta.outputs.tags }}
+      - name: Test Api
+        run: |
+          sleep 10
+          curl http://127.0.0.1:5000/test
+          curl --header "Content-Type: application/json" http://localhost:5000/librairie/livres -d '{"titre": "DevSecOps DEAVSETS", "auteur": "Jordan Assouline"}'
+
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: SonarQube Scan
+      uses: SonarSource/sonarqube-scan-action@<ce/actions/official-sonarqube-scan
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: https://sonarqube.apps.openshift.kakor.ovh

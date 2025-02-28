@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Release.Name | trunc 4 }}-python-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python
+  template:
+    metadata:
+      labels:
+        app: python
+    spec:
+      containers:
+      - name: {{.Release.Name | trunc 4 }}-python
+        image: {{ .Values.python.image }}
+        ports:
+        - containerPort: 5000
+        securityContext:
+          allowPrivilegeEscalation: true
+

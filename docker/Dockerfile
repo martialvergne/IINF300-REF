@@ -8,5 +8,4 @@ RUN chown -R pythonuser:pythonuser /app
 EXPOSE 5000
 USER pythonuser
 ENV FLASK_APP=/app/main.py
-# CMD ["flask", "run", "--host", "0.0.0.0"]
-CMD ["python", "main.py"]
+CMD ["flask", "run", "--host", "0.0.0.0"]

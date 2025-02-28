@@ -1,0 +1,15 @@
+name: Helm
+
+on:
+  push:
+    tags: ["helm*"]
+
+jobs:
+  Helm:
+    name: lancement Helm
+    runs-on: harbor.kakor.ovh/public/oc-helm:1.0
+    steps:
+      - name: Connexion à Openshift
+        run: oc login ....
+      - name: Déployment Helm
+        run: helm upgrade --install groupe-x librairie-helm/ --set image=<urlimage>:${{ github.sha }}
