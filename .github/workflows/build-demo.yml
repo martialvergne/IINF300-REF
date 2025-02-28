@@ -94,5 +94,7 @@ jobs:
       - name: Run Docker container
         run: docker run -d -p 5000:5000 --name groupe4 ${{ steps.meta.outputs.tags }}
       - name: test nginx
-        run: sleep 10 && curl http://127.0.0.1:5000/test
-
+        run: |
+          sleep 10
+          curl http://127.0.0.1:5000/test
+          curl --header "Content-Type: application/json" http://localhost:5000/librairie/livres -d '{"titre": "DevSecOps DEAVSETS", "auteur": "Jordan Assouline"}'
