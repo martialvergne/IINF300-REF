@@ -1,3 +1,0 @@
-Bravo, le déploiement est lancé !
-
-Vous pouvez vous rendre à l'url suivante : {{ .Values.Url }}

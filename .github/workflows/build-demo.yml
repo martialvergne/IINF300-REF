@@ -39,3 +39,16 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+  linter:
+    name: Lint python code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python Linter
+        uses: sunnysid3up/python-linter@master
+        with:
+          source: "./docker/app/"
+          mypy-options: "--ignore-missing-imports --show-error-codes"
+          pylint-options: ""
+          isort-options: "-w 100"
+          django: true
