@@ -52,3 +52,12 @@ jobs:
           pylint-options: "--rcfile=./docker/app/setup.cfg"
           isort-options: "-w 100"
           django: false
+  hadolint:
+    name: Hadolint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Hadolint
+        uses: hadolint/hadolint@v3.1.0
+        with:
+          dockerfile: ./docker/Dockerfile
