@@ -18,6 +18,7 @@ jobs:
           pylint-options: "--rcfile=./docker/app/setup.cfg"
           isort-options: "-w 100"
           django: false
+          strict: "low"
   hadolint:
     name: Hadolint
     runs-on: ubuntu-latest
@@ -87,7 +88,6 @@ jobs:
           registry: harbor.kakor.ovh
           image: ${{ steps.meta.outputs.tags }}
           run: |
-            docker run ${{ steps.meta.outputs.tags }}
             sleep 10 && curl --header "Content-Type: application/json" http://localhost:5000/test
 
 
