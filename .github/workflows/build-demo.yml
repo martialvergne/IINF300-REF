@@ -87,7 +87,7 @@ jobs:
           registry: harbor.kakor.ovh
           image: ${{ steps.meta.outputs.tags }}
           run: |
-            curl --header "Content-Type: application/json" http://localhost:5000/librairie/livres -d '{"titre": "DevSecOps DEAVSETS", "auteur": "Jordan Assouline"}' 
+            curl --header "Content-Type: application/json" http://localhost:5000/librairie/livres -d '{"titre": "DevSecOps DEAVSETS", "auteur": "Jordan Assouline"}'
 
 
 
