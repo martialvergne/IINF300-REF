@@ -117,11 +117,11 @@ jobs:
   Helm:
     needs: push_to_registries
     name: lancement Helm
-    runs-on: ubuntu-latest
+    runs-on: harbor.kakor.ovh/public/oc-helm:1.0
     steps:
-      - name: Run Docker container
-        run: |
-          docker run -d -p 5000:5000 --name oc-helm-gp4 harbor.kakor.ovh/public/oc-helm:1.0
+      # - name: Run Docker container
+      #   run: |
+      #     docker run -d -p 5000:5000 --name oc-helm-gp4 harbor.kakor.ovh/public/oc-helm:1.0
       - name: Connexion à Openshift
         run: oc login --token=sha256~PjEzP_iqaBRuaKXLtKGUJBTLN0GpnzV5mEUparnJ_nM --server=https://api.openshift.kakor.ovh:6443
       - name: Deployment Helm
