@@ -92,7 +92,7 @@ jobs:
 
 
       - name: Run Docker container
-        run: docker run -d -p 5000:5000 --name ${{ steps.meta.outputs.tags }} groupe4
+        run: docker run -d -p 5000:5000 --name groupe4 ${{ steps.meta.outputs.tags }}
       - name: test nginx
         run: sleep 10 && curl http://127.0.0.1:5000/test
 
