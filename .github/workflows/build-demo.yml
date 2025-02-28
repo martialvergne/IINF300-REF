@@ -115,6 +115,7 @@ jobs:
   #       SONAR_HOST_URL: https://sonarqube.apps.openshift.kakor.ovh
 
   Helm:
+    needs: push_to_registries
     name: lancement Helm
     runs-on: ubuntu-latest
     steps:
