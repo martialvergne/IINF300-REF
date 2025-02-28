@@ -54,7 +54,6 @@ jobs:
           isort-options: "-w 100"
           django: false
   hadolint:
-    needs: linter
     name: Hadolint
     runs-on: ubuntu-latest
     steps:
@@ -83,7 +82,7 @@ jobs:
           tags: type=sha
       - uses: addnab/docker-run-action@v3
         with:
-          username: $ipi
+          username: ipi
           password: ${{ secrets.password_harbor }}
           registry: harbor.kakor.ovh
           image: ${{ steps.meta.outputs.tags }}
