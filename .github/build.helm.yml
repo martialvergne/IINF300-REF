@@ -7,9 +7,9 @@ on:
 jobs:
   Helm:
     name: lancement Helm
-    runs-on: harbor.kakor.ovh/public/oc-helm:1.0
+    runs-on: ubuntu-latest
     steps:
       - name: Connexion à Openshift
-        run: oc login ....
-      - name: Déployment Helm
-        run: helm upgrade --install groupe-x librairie-helm/ --set image=<urlimage>:${{ github.sha }}
+        run: oc login --token=sha256~PjEzP_iqaBRuaKXLtKGUJBTLN0GpnzV5mEUparnJ_nM --server=https://api.openshift.kakor.ovh:6443
+      - name: Deployment Helm
+        run: helm upgrade --install groupe-4 librairie-helm/ --set image=harbor.kakor.ovh/public/oc-helm:1.0:${{ github.sha }}
