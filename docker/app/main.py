@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from .Librairie import Librairie
+from Librairie import Librairie
 
 fnac = Librairie("fnac", "36 rue de la boustifaille")
 fnac.ajouter_livre(["Harry Potter", "JK Rowling"])

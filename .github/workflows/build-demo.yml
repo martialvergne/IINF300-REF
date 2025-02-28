@@ -88,7 +88,7 @@ jobs:
           image: ${{ steps.meta.outputs.tags }}
           run: |
             flask run --host=0.0.0.0
-            curl --header "Content-Type: application/json" http://localhost:5000/librairie/livres -d '{"titre": "DevSecOps DEAVSETS", "auteur": "Jordan Assouline"}'
+            curl --header "Content-Type: application/json" http://localhost:5000/test
 
 
 
